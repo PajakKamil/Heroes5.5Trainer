@@ -13,6 +13,7 @@ import { clamp, parseDraft } from "./utils";
 import { useSidecar } from "./useSidecar";
 
 import { Header } from "./components/Header";
+import { TitleBar } from "./components/TitleBar";
 import { TrackerSection } from "./components/TrackerSection";
 import { StatCard } from "./components/StatCard";
 import { ResourcesSection } from "./components/ResourcesSection";
@@ -134,6 +135,8 @@ function App() {
 
   return (
     <>
+      <TitleBar />
+
       <svg width="0" height="0" style={{ position: "absolute" }} aria-hidden="true">
         <defs>
           <filter id="torn-edge" x="-6%" y="-6%" width="112%" height="112%">

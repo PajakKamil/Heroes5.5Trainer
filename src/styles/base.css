@@ -12,7 +12,7 @@ body{
       #2a1a0e 0px, #34210f 2px, #2a1a0e 4px, #3a2614 7px, #2a1a0e 10px),
     #2a1a0e;
   overflow-x:hidden;
-  padding: 0 0 0 0;
+  padding: var(--titlebar-height) 0 0 0;
 }
 
 body::before{
@@ -121,7 +121,7 @@ body::after{
 
 .article-alert{
   position:fixed;
-  top:18px;
+  top:calc(var(--titlebar-height) + 14px);
   left:50%;
   transform:translateX(-50%);
   z-index:1000;
