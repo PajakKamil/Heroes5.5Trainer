@@ -28,6 +28,7 @@ function App() {
     xpPatchOn, trackerOn, freezeAttackOn,
     connected, connText,
     logs, setLogs, pushLog,
+    alert, pushAlert, dismissAlert,
   } = useSidecar();
 
   const [drafts, setDrafts] = useState<Record<StatField, string>>({
@@ -72,7 +73,9 @@ function App() {
       const reply: string = await invoke("call_sidecar", { command: payload });
       if (reply) pushLog("info", "reply", reply);
     } catch (err) {
-      pushLog("err", "error", String(err));
+      const msg = String(err);
+      pushLog("err", "error", msg);
+      pushAlert("err", "error", msg);
     }
   };
 
@@ -210,6 +213,33 @@ function App() {
           <span>anno regni</span>
         </div>
       </main>
+
+      {alert && (
+        <div
+          key={alert.id}
+          className={`article-alert ${alert.level}`}
+          role="alert"
+          aria-live="assertive"
+        >
+          <span className="article-alert-sigil" aria-hidden="true">
+            {alert.level === "err" ? "✶" : "⚜"}
+          </span>
+          <div className="article-alert-body">
+            <span className="article-alert-tag">
+              {alert.level === "err" ? "Błąd" : "Ostrzeżenie"} · {alert.tag}
+            </span>
+            <span className="article-alert-msg">{alert.message}</span>
+          </div>
+          <button
+            type="button"
+            className="article-alert-close"
+            onClick={dismissAlert}
+            aria-label="Zamknij komunikat"
+          >
+            ×
+          </button>
+        </div>
+      )}
 
       <LogWindow
         logs={logs}

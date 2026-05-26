@@ -15,6 +15,8 @@ export const SPARK_LIFETIME_MS = 900;
 
 export const LOG_LIMIT = 500;
 
+export const ALERT_AUTO_DISMISS_MS = 6000;
+
 export const STATS: StatSpec[] = [
   { field: "attack",     command: "SetAttack",     name: "Atak",        icon: "sword",      hotkey: ["Ctrl","5"],       hasSnapshot: true  },
   { field: "defense",    command: "SetDefense",    name: "Obrona",      icon: "shield",     hotkey: ["Ctrl","6"],       hasSnapshot: true  },

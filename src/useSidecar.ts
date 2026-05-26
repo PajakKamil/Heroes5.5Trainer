@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { listen } from "@tauri-apps/api/event";
-import type { LogEntry, LogLevel, Snapshot } from "./types";
-import { LOG_LIMIT } from "./constants";
+import type { AlertEntry, AlertLevel, LogEntry, LogLevel, Snapshot } from "./types";
+import { ALERT_AUTO_DISMISS_MS, LOG_LIMIT } from "./constants";
 import { classifyEvent, nowTime } from "./utils";
 
 export const useSidecar = () => {
@@ -12,7 +12,10 @@ export const useSidecar = () => {
   const [connected, setConnected] = useState(false);
   const [connText, setConnText] = useState("Oczekiwanie na proces gry…");
   const [logs, setLogs] = useState<LogEntry[]>([]);
+  const [alert, setAlert] = useState<AlertEntry | null>(null);
   const logIdRef = useRef(0);
+  const alertIdRef = useRef(0);
+  const alertTimerRef = useRef<number | null>(null);
 
   const pushLog = (level: LogLevel, tag: string, message: string) => {
     setLogs(prev => {
@@ -20,6 +23,20 @@ export const useSidecar = () => {
       if (next.length > LOG_LIMIT) next.splice(0, next.length - LOG_LIMIT);
       return next;
     });
+  };
+
+  const pushAlert = (level: AlertLevel, tag: string, message: string) => {
+    setAlert({ id: ++alertIdRef.current, level, tag, message });
+    if (alertTimerRef.current != null) window.clearTimeout(alertTimerRef.current);
+    alertTimerRef.current = window.setTimeout(() => setAlert(null), ALERT_AUTO_DISMISS_MS);
+  };
+
+  const dismissAlert = () => {
+    if (alertTimerRef.current != null) {
+      window.clearTimeout(alertTimerRef.current);
+      alertTimerRef.current = null;
+    }
+    setAlert(null);
   };
 
   useEffect(() => {
@@ -89,12 +106,17 @@ export const useSidecar = () => {
             if (enabled !== undefined) setFreezeAttackOn(enabled);
             break;
         }
-        pushLog(classifyEvent(type), type, msg);
+        const level = classifyEvent(type);
+        if (level === "err" || level === "warn") pushAlert(level, type, msg);
+        pushLog(level, type, msg);
       } catch {
         pushLog("info", "raw", raw);
       }
     });
-    return () => { unlistenP.then(u => u()); };
+    return () => {
+      unlistenP.then(u => u());
+      if (alertTimerRef.current != null) window.clearTimeout(alertTimerRef.current);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -103,5 +125,6 @@ export const useSidecar = () => {
     xpPatchOn, trackerOn, freezeAttackOn,
     connected, connText,
     logs, setLogs, pushLog,
+    alert, pushAlert, dismissAlert,
   };
 };

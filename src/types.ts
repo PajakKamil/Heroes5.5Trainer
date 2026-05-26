@@ -33,3 +33,6 @@ export type StatSpec = {
 
 export type LogLevel = "info" | "ok" | "warn" | "err";
 export type LogEntry = { id: number; time: string; level: LogLevel; tag: string; message: string };
+
+export type AlertLevel = "warn" | "err";
+export type AlertEntry = { id: number; level: AlertLevel; tag: string; message: string };
