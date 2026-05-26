@@ -43,9 +43,10 @@ export const TitleBar = () => {
           aria-label="Zwiń"
           title="Zwiń"
         >
-          <svg viewBox="0 0 12 12" aria-hidden="true">
+          {/* <svg viewBox="0 0 12 12" aria-hidden="true">
             <path d="M2 6 H10" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-          </svg>
+          </svg> */}
+            <img src="src\assets\ScrollDown.png" alt="asd" height={24} width={24} />
         </button>
         <button
           type="button"
@@ -54,16 +55,18 @@ export const TitleBar = () => {
           aria-label={maximized ? "Przywróć" : "Rozszerz"}
           title={maximized ? "Przywróć" : "Rozszerz"}
         >
-          <svg viewBox="0 0 12 12" aria-hidden="true">
+          {/* <svg viewBox="0 0 12 12" aria-hidden="true"> */}
             {maximized ? (
               <>
-                <rect x="2.5" y="3.5" width="6" height="6" fill="none" stroke="currentColor" strokeWidth="1.2" />
-                <path d="M4 3.5 V2.5 H9.5 V8" fill="none" stroke="currentColor" strokeWidth="1.2" />
+                {/* <rect x="2.5" y="3.5" width="6" height="6" fill="none" stroke="currentColor" strokeWidth="1.2" />
+                <path d="M4 3.5 V2.5 H9.5 V8" fill="none" stroke="currentColor" strokeWidth="1.2" /> */}
+                <img src="src\assets\ComboBtnNormalDown-new.png" alt="asd" height={24} width={24} />
               </>
             ) : (
-              <rect x="2.5" y="2.5" width="7" height="7" fill="none" stroke="currentColor" strokeWidth="1.2" />
+              // <rect x="2.5" y="2.5" width="7" height="7" fill="none" stroke="currentColor" strokeWidth="1.2" />
+                <img src="src\assets\ComboBtnNormalDown-new.png" alt="asd" height={24} width={24} style={{rotate: "180deg"}} />
             )}
-          </svg>
+          {/* </svg> */}
         </button>
         <button
           type="button"
@@ -72,9 +75,10 @@ export const TitleBar = () => {
           aria-label="Zamknij"
           title="Zamknij"
         >
-          <svg viewBox="0 0 12 12" aria-hidden="true">
+          {/* <svg viewBox="0 0 12 12" aria-hidden="true">
             <path d="M3 3 L9 9 M9 3 L3 9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-          </svg>
+          </svg> */}
+            <img src="src\assets\exit-new.png" aria-hidden="true" alt="asd" height={24} width={24} />
         </button>
       </div>
     </div>

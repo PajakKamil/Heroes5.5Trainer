@@ -135,8 +135,6 @@ function App() {
 
   return (
     <>
-      <TitleBar />
-
       <svg width="0" height="0" style={{ position: "absolute" }} aria-hidden="true">
         <defs>
           <filter id="torn-edge" x="-6%" y="-6%" width="112%" height="112%">
@@ -147,6 +145,7 @@ function App() {
       </svg>
 
       <main className="sheet">
+        <TitleBar />
         <span className="crease" aria-hidden="true" />
         <span className="crease v" aria-hidden="true" />
         <span className="hole h1" aria-hidden="true" />
