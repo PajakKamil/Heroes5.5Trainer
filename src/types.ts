@@ -1,7 +1,8 @@
 export type IconKey =
   | "crown" | "scroll" | "sword" | "shield" | "book" | "wand"
   | "flask" | "chalice" | "boot" | "snow" | "eye" | "dump"
-  | "smile" | "cloverleaf";
+  | "smile" | "cloverleaf"
+  | "wood" | "ore" | "mercury" | "sulfur" | "crystal" | "gems" | "gold";
 
 export type Snapshot = {
   heroPtr?: number;
@@ -21,6 +22,18 @@ export type Snapshot = {
 export type StatField =
   | "attack" | "defense" | "spellPower" | "knowledge"
   | "morale" | "luck" | "freezeAttack";
+
+export type ResourceField =
+  | "wood" | "ore" | "mercury" | "sulfur" | "crystal" | "gems" | "gold";
+
+export type ResourceSpec = {
+  field: ResourceField;
+  command: string;
+  name: string;
+  icon: IconKey;
+  hotkey: string[];
+  defaultDelta: number;
+};
 
 export type StatSpec = {
   field: StatField;

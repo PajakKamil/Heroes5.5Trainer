@@ -2,11 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import "./App.css";
 
-import type { StatField, StatSpec } from "./types";
+import type { ResourceField, ResourceSpec, StatField, StatSpec } from "./types";
 import {
   STAT_DEFAULT, STAT_MIN, STAT_MAX,
   XP_DEFAULT_DELTA, XP_MIN, XP_MAX,
-  STATS,
+  STATS, RESOURCES,
+  RESOURCE_MIN, RESOURCE_MAX,
+  SET_MOVEMENT_DEFAULT,
   SPARK_COUNT, SPARK_BASE_DIST, SPARK_RAND_DIST, SPARK_LIFETIME_MS,
 } from "./constants";
 import { clamp, parseDraft } from "./utils";
@@ -17,6 +19,7 @@ import { TitleBar } from "./components/TitleBar";
 import { TrackerSection } from "./components/TrackerSection";
 import { StatCard } from "./components/StatCard";
 import { ResourcesSection } from "./components/ResourcesSection";
+import { TreasurySection } from "./components/TreasurySection";
 import { TogglesSection } from "./components/TogglesSection";
 import { BestowButton } from "./components/BestowButton";
 import { LogWindow } from "./components/LogWindow";
@@ -42,6 +45,12 @@ function App() {
     freezeAttack: String(STAT_DEFAULT),
   });
   const [xpDelta, setXpDelta] = useState<string>(String(XP_DEFAULT_DELTA));
+  const [resourceDrafts, setResourceDrafts] = useState<Record<ResourceField, string>>(
+    () => RESOURCES.reduce((acc, r) => {
+      acc[r.field] = String(r.defaultDelta);
+      return acc;
+    }, {} as Record<ResourceField, string>),
+  );
   const [cmdInput, setCmdInput] = useState("");
   const [bestowing, setBestowing] = useState(false);
   const [bumped, setBumped] = useState<string | null>(null);
@@ -99,6 +108,13 @@ function App() {
     sendCommand("AddXp", val);
   };
 
+  const applyResource = (r: ResourceSpec) => {
+    const val = clamp(parseDraft(resourceDrafts[r.field], r.defaultDelta), RESOURCE_MIN, RESOURCE_MAX);
+    setResourceDrafts(prev => ({ ...prev, [r.field]: String(val) }));
+    bump(`add-${r.field}`);
+    sendCommand(r.command, val);
+  };
+
   const handleRefillMovement = () => { bump("refill-mov");  sendCommand("RefillMovement"); };
   const handleRefillMana     = () => { bump("refill-mana"); sendCommand("RefillMana"); };
   const handleShowSnapshot   = () => { sendCommand("ShowSnapshot"); };
@@ -125,7 +141,7 @@ function App() {
     });
     setSparks(prev => [...prev, ...newSparks]);
     setTimeout(() => setSparks(prev => prev.filter(s => !newSparks.find(ns => ns.id === s.id))), SPARK_LIFETIME_MS);
-    handleShowSnapshot();
+    sendCommand("SetMovement", SET_MOVEMENT_DEFAULT);
   };
 
   const handleCmdSubmit = (e: React.SubmitEvent) => {
@@ -184,6 +200,13 @@ function App() {
           onAddXp={handleAddXp}
           onRefillMana={handleRefillMana}
           onRefillMovement={handleRefillMovement}
+          bumped={bumped}
+        />
+
+        <TreasurySection
+          drafts={resourceDrafts}
+          setDrafts={setResourceDrafts}
+          onApply={applyResource}
           bumped={bumped}
         />
 

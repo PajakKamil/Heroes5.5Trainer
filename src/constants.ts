@@ -1,4 +1,4 @@
-import type { StatSpec } from "./types";
+import type { ResourceSpec, StatSpec } from "./types";
 
 export const STAT_MIN = 0;
 export const STAT_MAX = 999;
@@ -24,4 +24,20 @@ export const STATS: StatSpec[] = [
   { field: "knowledge",  command: "SetKnowledge",  name: "Wiedza",      icon: "book",       hotkey: ["Ctrl","8"],       hasSnapshot: true  },
   { field: "morale",     command: "SetMorale",     name: "Morale",      icon: "smile",      hotkey: ["Ctrl","Alt","1"], hasSnapshot: false },
   { field: "luck",       command: "SetLuck",       name: "Szczęście",   icon: "cloverleaf", hotkey: ["Ctrl","Alt","2"], hasSnapshot: false },
+];
+
+export const RESOURCE_DEFAULT_DELTA = 99;
+export const GOLD_DEFAULT_DELTA = 999_999;
+export const SET_MOVEMENT_DEFAULT = 999_999;
+export const RESOURCE_MIN = -2_000_000_000;
+export const RESOURCE_MAX = 2_000_000_000;
+
+export const RESOURCES: ResourceSpec[] = [
+  { field: "wood",    command: "AddWood",    name: "Drewno",  icon: "wood",    hotkey: ["Ctrl","Alt","3"], defaultDelta: RESOURCE_DEFAULT_DELTA },
+  { field: "ore",     command: "AddOre",     name: "Ruda",    icon: "ore",     hotkey: ["Ctrl","Alt","4"], defaultDelta: RESOURCE_DEFAULT_DELTA },
+  { field: "mercury", command: "AddMercury", name: "Rtęć",    icon: "mercury", hotkey: ["Ctrl","Alt","5"], defaultDelta: RESOURCE_DEFAULT_DELTA },
+  { field: "sulfur",  command: "AddSulfur",  name: "Siarka",  icon: "sulfur",  hotkey: ["Ctrl","Alt","6"], defaultDelta: RESOURCE_DEFAULT_DELTA },
+  { field: "crystal", command: "AddCrystal", name: "Kryształ",icon: "crystal", hotkey: ["Ctrl","Alt","7"], defaultDelta: RESOURCE_DEFAULT_DELTA },
+  { field: "gems",    command: "AddGems",    name: "Klejnoty",icon: "gems",    hotkey: ["Ctrl","Alt","8"], defaultDelta: RESOURCE_DEFAULT_DELTA },
+  { field: "gold",    command: "AddGold",    name: "Złoto",   icon: "gold",    hotkey: ["Ctrl","Alt","9"], defaultDelta: GOLD_DEFAULT_DELTA },
 ];

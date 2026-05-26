@@ -16,7 +16,7 @@ export const BestowButton = ({ bestowing, sparks, onClick, onAnimationEnd }: Pro
       type="button"
       onClick={onClick}
       onAnimationEnd={onAnimationEnd}
-      title="Wyślij Pokaż Stan (z fanfarami)"
+      title="Nadaj królewski zapas ruchu (SetMovement = 999 999)"
     >
       <span>
         <FiligreeSym />

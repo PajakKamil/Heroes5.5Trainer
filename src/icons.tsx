@@ -13,6 +13,13 @@ import {
   GiJeweledChalice,
   GiEagleEmblem,
   GiSunkenEye,
+  GiPowder,
+  GiCutDiamond,
+  GiTwoCoins,
+  GiCrystalGrowth,
+  GiWoodPile,
+  GiStonePile,
+  GiCauldron,
 } from "react-icons/gi";
 import { FaWandSparkles } from "react-icons/fa6";
 
@@ -33,6 +40,13 @@ export const ICONS: Record<IconKey, ReactElement> = {
   dump: <GiPapers />,
   smile: <GiEagleEmblem />,
   cloverleaf: <GiClover />,
+  wood: <GiWoodPile />,
+  ore: <GiStonePile />,
+  mercury: <GiCauldron />,
+  sulfur: <GiPowder />,
+  crystal: <GiCrystalGrowth  />,
+  gems: <GiCutDiamond />,
+  gold: <GiTwoCoins />,
 };
 
 const CornerSym = () => (
