@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState, type ReactElement } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import { listen } from "@tauri-apps/api/event";
-import { FaWandSparkles } from "react-icons/fa6"
 import "./App.css";
 
 // ============ CONSTANTS ============
