@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { getCurrentWindow } from "@tauri-apps/api/window";
+import scrollDownIcon from "../assets/ScrollDown.png";
+import maximizeIcon from "../assets/ComboBtnNormalDown-new.png";
+import exitIcon from "../assets/exit-new.png";
 
 const appWindow = getCurrentWindow();
 
@@ -46,7 +49,7 @@ export const TitleBar = () => {
           {/* <svg viewBox="0 0 12 12" aria-hidden="true">
             <path d="M2 6 H10" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
           </svg> */}
-            <img src="src\assets\ScrollDown.png" alt="asd" height={24} width={24} />
+            <img src={scrollDownIcon} alt="" height={24} width={24} />
         </button>
         <button
           type="button"
@@ -60,11 +63,11 @@ export const TitleBar = () => {
               <>
                 {/* <rect x="2.5" y="3.5" width="6" height="6" fill="none" stroke="currentColor" strokeWidth="1.2" />
                 <path d="M4 3.5 V2.5 H9.5 V8" fill="none" stroke="currentColor" strokeWidth="1.2" /> */}
-                <img src="src\assets\ComboBtnNormalDown-new.png" alt="asd" height={24} width={24} />
+                <img src={maximizeIcon} alt="" height={24} width={24} />
               </>
             ) : (
               // <rect x="2.5" y="2.5" width="7" height="7" fill="none" stroke="currentColor" strokeWidth="1.2" />
-                <img src="src\assets\ComboBtnNormalDown-new.png" alt="asd" height={24} width={24} style={{rotate: "180deg"}} />
+                <img src={maximizeIcon} alt="" height={24} width={24} style={{rotate: "180deg"}} />
             )}
           {/* </svg> */}
         </button>
@@ -78,7 +81,7 @@ export const TitleBar = () => {
           {/* <svg viewBox="0 0 12 12" aria-hidden="true">
             <path d="M3 3 L9 9 M9 3 L3 9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
           </svg> */}
-            <img src="src\assets\exit-new.png" aria-hidden="true" alt="asd" height={24} width={24} />
+            <img src={exitIcon} aria-hidden="true" alt="" height={24} width={24} />
         </button>
       </div>
     </div>
