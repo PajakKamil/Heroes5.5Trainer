@@ -5,7 +5,7 @@ type Props = {
   logs: LogEntry[];
   cmdInput: string;
   setCmdInput: (v: string) => void;
-  onSubmit: (e: React.FormEvent) => void;
+  onSubmit: (e: React.SubmitEvent) => void;
   onClear: () => void;
 };
 

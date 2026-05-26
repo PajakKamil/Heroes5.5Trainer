@@ -128,7 +128,7 @@ function App() {
     handleShowSnapshot();
   };
 
-  const handleCmdSubmit = (e: React.FormEvent) => {
+  const handleCmdSubmit = (e: React.SubmitEvent) => {
     e.preventDefault();
     if (cmdInput.trim()) { sendCommand(cmdInput.trim()); setCmdInput(""); }
   };

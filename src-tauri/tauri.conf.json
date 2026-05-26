@@ -12,13 +12,11 @@
   "app": {
     "windows": [
       {
-        "title": "heroes55_trainer",
+        "title": "Codex Heroum V · Trainer",
         "width": 800,
         "height": 600,
         "minWidth": 800,
         "minHeight": 600,
-        "maxWidth": 1600,
-        "maxHeight": 1440,
         "decorations": false,
         "transparent": true,
         "shadow": false
