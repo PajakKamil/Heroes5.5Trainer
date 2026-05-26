@@ -1,0 +1,89 @@
+.grant-wrap{
+  margin-top:30px;
+  display:flex; justify-content:center;
+  position:relative;
+}
+.grant{
+  position:relative;
+  border:none;
+  cursor:var(--cursor-pointer), pointer;
+  padding:18px 80px;
+  font-family:"IM Fell English SC", serif;
+  font-size:26px;
+  letter-spacing:.12em;
+  color:#f4e6c2;
+  background:linear-gradient(180deg, #6b1a10 0%, #4a0e08 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,210,170,.25),
+    inset 0 -3px 6px rgba(0,0,0,.45),
+    inset 0 3px 6px rgba(255,200,160,.18),
+    0 6px 14px rgba(60,15,5,.35);
+  transition:transform .08s, box-shadow .08s, filter .15s;
+  transform-origin:center;
+}
+.grant::before, .grant::after{
+  content:"";
+  position:absolute; top:0; bottom:0;
+  width:18px;
+  background:linear-gradient(180deg, #5a140b, #2a0805);
+  border:1px solid #1a0503;
+}
+.grant::before{
+  left:-14px;
+  clip-path:polygon(100% 0, 100% 100%, 0 100%, 50% 50%, 0 0);
+}
+.grant::after{
+  right:-14px;
+  clip-path:polygon(0 0, 100% 50%, 0 100%);
+}
+.grant span{
+  position:relative;
+  display:inline-flex; align-items:center; gap:14px;
+}
+.grant .filigree{
+  width:20px; height:20px;
+  opacity:.7;
+  transition:opacity .2s, transform .2s;
+}
+.grant:hover{
+  filter:brightness(1.12) saturate(1.05);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,210,170,.4),
+    inset 0 -3px 6px rgba(0,0,0,.45),
+    inset 0 3px 6px rgba(255,200,160,.3),
+    0 10px 22px rgba(60,15,5,.45),
+    0 0 26px rgba(216,120,60,.25);
+  letter-spacing:.13em;
+}
+.grant:hover .filigree{ opacity:1; transform:scale(1.1) rotate(8deg); }
+.grant:active{
+  transform:translateY(2px) scale(.985);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,210,170,.25),
+    inset 0 3px 6px rgba(0,0,0,.55),
+    inset 0 -2px 4px rgba(255,200,160,.1),
+    0 2px 6px rgba(60,15,5,.3);
+}
+.grant.bestowing{ animation:bestowStamp .45s cubic-bezier(.5,0,.3,1.15); }
+@keyframes bestowStamp{
+  0%   { transform:translateY(0) scale(1);    filter:brightness(1); }
+  22%  { transform:translateY(3px) scale(.97); filter:brightness(.92) saturate(1.15); }
+  55%  { transform:translateY(-1px) scale(1.015); filter:brightness(1.2) saturate(1.08); }
+  100% { transform:translateY(0) scale(1);    filter:brightness(1); }
+}
+
+.spark{
+  position:absolute;
+  left:50%; top:50%;
+  width:5px; height:5px;
+  margin:-2.5px 0 0 -2.5px;
+  background:radial-gradient(circle, #fbe7a0 0%, #d29a3a 55%, rgba(210,154,58,0) 75%);
+  border-radius:50%;
+  pointer-events:none;
+  opacity:0;
+}
+.spark.fire{ animation:sparkFly .55s ease-out forwards; }
+@keyframes sparkFly{
+  0%   { transform:translate(0,0) scale(.4); opacity:1; }
+  100% { transform:translate(var(--dx), var(--dy)) scale(1.2); opacity:0; }
+}

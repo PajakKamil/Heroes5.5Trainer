@@ -1,0 +1,100 @@
+.log-window{
+  position:relative;
+  margin:34px 0 0;
+  z-index:1;
+  background:linear-gradient(180deg, var(--log-bg-hi), var(--log-bg));
+  border:1px solid #000;
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.55),
+    inset 0 0 0 1px rgba(216,160,80,.18),
+    inset 0 0 36px rgba(80,40,10,.5);
+  color:var(--log-ink);
+  font-family:"Consolas", "Courier New", monospace;
+  font-size:13px;
+}
+.log-head{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:12px;
+  padding:8px 14px;
+  border-bottom:1px solid rgba(216,160,80,.25);
+  background:linear-gradient(180deg, rgba(216,160,80,.10), rgba(216,160,80,0));
+  font-family:"IM Fell English SC", serif;
+  font-size:15px;
+  letter-spacing:.12em;
+  color:var(--gold-hi);
+  text-transform:uppercase;
+}
+.log-actions{display:flex; gap:8px}
+.log-btn{
+  background:transparent;
+  border:1px solid rgba(216,160,80,.4);
+  color:var(--log-ink);
+  font-family:"Cinzel", serif;
+  font-size:11px;
+  letter-spacing:.12em;
+  padding:4px 10px;
+  cursor:var(--cursor-pointer), pointer;
+  text-transform:uppercase;
+  transition:background .15s, border-color .15s, color .15s;
+}
+.log-btn:hover{
+  background:rgba(216,160,80,.12);
+  border-color:rgba(216,160,80,.7);
+  color:var(--gold-hi);
+}
+.log-body{
+  max-height:280px;
+  overflow:auto;
+  padding:10px 14px;
+  scroll-behavior:smooth;
+}
+.log-line{
+  display:flex;
+  gap:10px;
+  padding:2px 0;
+  border-bottom:1px dashed rgba(216,160,80,.08);
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+.log-time{
+  color:var(--ink-soft);
+  flex-shrink:0;
+}
+.log-tag{
+  flex-shrink:0;
+  min-width:90px;
+  font-weight:bold;
+  letter-spacing:.06em;
+}
+.log-tag.info{ color:var(--log-info) }
+.log-tag.ok{   color:var(--log-ok) }
+.log-tag.warn{ color:var(--log-warn) }
+.log-tag.err{  color:var(--log-err) }
+.log-msg{flex:1; min-width:0}
+.log-empty{
+  text-align:center;
+  color:var(--ink-soft);
+  padding:18px;
+  font-style:italic;
+}
+
+.cmd-row{
+  display:flex; gap:8px; align-items:center;
+  padding:8px 14px;
+  border-top:1px solid rgba(216,160,80,.25);
+  background:rgba(0,0,0,.25);
+}
+.cmd-input{
+  flex:1;
+  background:rgba(0,0,0,.35);
+  color:var(--log-ink);
+  border:1px solid rgba(216,160,80,.3);
+  padding:5px 8px;
+  font-family:"Consolas", monospace;
+  font-size:13px;
+  outline:none;
+}
+.cmd-input:focus{
+  border-color:var(--gold-hi);
+  background:rgba(0,0,0,.5);
+}
